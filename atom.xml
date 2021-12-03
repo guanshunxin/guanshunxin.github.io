@@ -3,11 +3,11 @@
   <title>guan</title>
   
   <subtitle>管顺新の博客</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://guanshunxin.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://guanshunxin.github.io/"/>
   <updated>2021-09-07T14:52:39.538Z</updated>
-  <id>http://example.com/</id>
+  <id>https://guanshunxin.github.io/</id>
   
   <author>
     <name>guanshunxin</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>博客与博主</title>
-    <link href="http://example.com/posts/1.html"/>
-    <id>http://example.com/posts/1.html</id>
+    <link href="https://guanshunxin.github.io/posts/1.html"/>
+    <id>https://guanshunxin.github.io/posts/1.html</id>
     <published>2021-05-27T13:00:00.000Z</published>
     <updated>2021-09-07T14:52:39.538Z</updated>
     
@@ -34,10 +34,10 @@
     
     
     
-    <category term="生活" scheme="http://example.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    <category term="生活" scheme="https://guanshunxin.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-    <category term="想法" scheme="http://example.com/tags/%E6%83%B3%E6%B3%95/"/>
+    <category term="想法" scheme="https://guanshunxin.github.io/tags/%E6%83%B3%E6%B3%95/"/>
     
   </entry>
   

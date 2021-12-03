@@ -1,1 +1,1 @@
-http://example.com/posts/1.html
+https://guanshunxin.github.io/posts/1.html
