@@ -27,6 +27,31 @@
     </entry>
     
     
+    
+    <entry>
+      <title>Live2d看板娘位置的改变</title>
+      <link href="/posts/1.html"/>
+      <url>/posts/1.html</url>
+      
+        <content type="html"><![CDATA[<p>页面上的东西太多了，可爱的看版娘都没地方了，现在就让我们改变它的位置吧</p><p>###找到L2Dwidget.min.js</p><p>首先在自己的博客主目录下找到 node_modules ,打开 liv2d-widget 文件夹，编辑 L2Dwidget.min.js。</p><p>###修改其中的position</p><p>Ctrl+f 找到position，修改 hOffset 改变的是水平的位置， hOffset 修改垂直位置 （ 根据自己的要求改变 ）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
