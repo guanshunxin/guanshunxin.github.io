@@ -6,7 +6,7 @@
   <link href="https://guanshunxin.github.io/atom.xml" rel="self"/>
   
   <link href="https://guanshunxin.github.io/"/>
-  <updated>2021-12-04T09:53:29.782Z</updated>
+  <updated>2021-12-04T10:13:09.167Z</updated>
   <id>https://guanshunxin.github.io/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Live2d看板娘位置的改变</title>
+    <link href="https://guanshunxin.github.io/posts/1.html"/>
+    <id>https://guanshunxin.github.io/posts/1.html</id>
+    <published>2021-12-04T10:13:30.000Z</published>
+    <updated>2021-12-04T10:13:09.167Z</updated>
+    
+    <content type="html"><![CDATA[<p>页面上的东西太多了，可爱的看版娘都没地方了，现在就让我们改变它的位置吧</p><p>###找到L2Dwidget.min.js</p><p>首先在自己的博客主目录下找到 node_modules ,打开 liv2d-widget 文件夹，编辑 L2Dwidget.min.js。</p><p>###修改其中的position</p><p>Ctrl+f 找到position，修改 hOffset 改变的是水平的位置， hOffset 修改垂直位置 （ 根据自己的要求改变 ）</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;页面上的东西太多了，可爱的看版娘都没地方了，现在就让我们改变它的位置吧&lt;/p&gt;
+&lt;p&gt;###找到L2Dwidget.min.js&lt;/p&gt;
+&lt;p&gt;首先在自己的博客主目录下找到 node_modules ,打开 liv2d-widget 文件夹，编辑 L2Dwidget.min</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="https://guanshunxin.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Hexo" scheme="https://guanshunxin.github.io/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://guanshunxin.github.io/posts/d87f7e0c.html"/>
+    <id>https://guanshunxin.github.io/posts/d87f7e0c.html</id>
+    <published>2021-12-04T10:10:57.000Z</published>
+    <updated>2021-12-04T10:15:41.892Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>博客与博主</title>
@@ -38,32 +77,6 @@
     
     
     <category term="想法" scheme="https://guanshunxin.github.io/tags/%E6%83%B3%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Live2d看板娘位置的改变</title>
-    <link href="https://guanshunxin.github.io/posts/1.html"/>
-    <id>https://guanshunxin.github.io/posts/1.html</id>
-    <published>2021-05-27T13:00:00.000Z</published>
-    <updated>2021-12-04T10:06:25.418Z</updated>
-    
-    <content type="html"><![CDATA[<p>页面上的东西太多了，可爱的看版娘都没地方了，现在就让我们改变它的位置吧</p><p>###找到L2Dwidget.min.js</p><p>首先在自己的博客主目录下找到 node_modules ,打开 liv2d-widget 文件夹，编辑 L2Dwidget.min.js。</p><p>###修改其中的position</p><p>Ctrl+f 找到position，修改 hOffset 改变的是水平的位置， hOffset 修改垂直位置 （ 根据自己的要求改变 ）</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;页面上的东西太多了，可爱的看版娘都没地方了，现在就让我们改变它的位置吧&lt;/p&gt;
-&lt;p&gt;###找到L2Dwidget.min.js&lt;/p&gt;
-&lt;p&gt;首先在自己的博客主目录下找到 node_modules ,打开 liv2d-widget 文件夹，编辑 L2Dwidget.min</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="https://guanshunxin.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Hexo" scheme="https://guanshunxin.github.io/tags/Hexo/"/>
     
   </entry>
   
