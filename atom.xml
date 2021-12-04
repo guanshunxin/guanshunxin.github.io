@@ -6,7 +6,7 @@
   <link href="https://guanshunxin.github.io/atom.xml" rel="self"/>
   
   <link href="https://guanshunxin.github.io/"/>
-  <updated>2021-12-04T10:13:09.167Z</updated>
+  <updated>2021-12-04T14:36:30.115Z</updated>
   <id>https://guanshunxin.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Live2d看板娘位置的改变</title>
-    <link href="https://guanshunxin.github.io/posts/1.html"/>
-    <id>https://guanshunxin.github.io/posts/1.html</id>
+    <link href="https://guanshunxin.github.io/posts/2.html"/>
+    <id>https://guanshunxin.github.io/posts/2.html</id>
     <published>2021-12-04T10:13:30.000Z</published>
-    <updated>2021-12-04T10:13:09.167Z</updated>
+    <updated>2021-12-04T14:36:30.115Z</updated>
     
     <content type="html"><![CDATA[<p>页面上的东西太多了，可爱的看版娘都没地方了，现在就让我们改变它的位置吧</p><p>###找到L2Dwidget.min.js</p><p>首先在自己的博客主目录下找到 node_modules ,打开 liv2d-widget 文件夹，编辑 L2Dwidget.min.js。</p><p>###修改其中的position</p><p>Ctrl+f 找到position，修改 hOffset 改变的是水平的位置， hOffset 修改垂直位置 （ 根据自己的要求改变 ）</p>]]></content>
     
