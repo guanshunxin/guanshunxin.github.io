@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://guanshunxin.github.io/about/index.html</loc>
+    
+    <lastmod>2021-12-04</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://guanshunxin.github.io/List/music/index.html</loc>
     
     <lastmod>2021-12-04</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://guanshunxin.github.io/posts/1.html</loc>
     
     <lastmod>2021-09-07</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://guanshunxin.github.io/about/index.html</loc>
-    
-    <lastmod>2021-08-02</lastmod>
     
   </url>
   
