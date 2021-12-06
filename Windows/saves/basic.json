@@ -220,7 +220,7 @@
             "desc": "个人博客",
             "icon": {
                 "type": "img",
-                "content": "https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/avatar.jpg",
+                "content": "https://guanshunxin.github.io/img/tou.jpg",
                 "bg": "#6b96cf"
             },
             "openMode": "normal",
@@ -241,7 +241,7 @@
                 "width": "x*0.8"
             },
             "title": "个人博客",
-            "url": "http://ze520.cn",
+            "url": "http://www.guanshunxin.com",
             "customTile": "",
             "urlRandomToken": true
         },
