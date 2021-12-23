@@ -102,7 +102,7 @@
 
   <url>
     <loc>https://www.guanshunxin.com/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -110,14 +110,14 @@
   
   <url>
     <loc>https://www.guanshunxin.com/tags/%E6%83%B3%E6%B3%95/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.guanshunxin.com/tags/Hexo/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -126,14 +126,14 @@
   
   <url>
     <loc>https://www.guanshunxin.com/categories/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2021-12-15</lastmod>
+    <lastmod>2021-12-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
