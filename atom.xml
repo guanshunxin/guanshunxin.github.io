@@ -6,7 +6,7 @@
   <link href="https://www.guanshunxin.com/atom.xml" rel="self"/>
   
   <link href="https://www.guanshunxin.com/"/>
-  <updated>2022-01-22T07:26:30.655Z</updated>
+  <updated>2022-01-22T07:33:40.822Z</updated>
   <id>https://www.guanshunxin.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://www.guanshunxin.com/posts/3.html"/>
     <id>https://www.guanshunxin.com/posts/3.html</id>
     <published>2022-01-22T06:54:32.000Z</published>
-    <updated>2022-01-22T07:26:30.655Z</updated>
+    <updated>2022-01-22T07:33:40.822Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="今天开始MYSQL的学习"><a href="#今天开始MYSQL的学习" class="headerlink" title="今天开始MYSQL的学习"></a>今天开始MYSQL的学习</h1><h2 id="使用windows的命令提示符完成下列操作"><a href="#使用windows的命令提示符完成下列操作" class="headerlink" title="使用windows的命令提示符完成下列操作"></a>使用windows的命令提示符完成下列操作</h2><h3 id="MYSQL的启动"><a href="#MYSQL的启动" class="headerlink" title="MYSQL的启动"></a>MYSQL的启动</h3><pre class="line-numbers language-none"><code class="language-none">net start mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="MYSQL的停止"><a href="#MYSQL的停止" class="headerlink" title="MYSQL的停止"></a>MYSQL的停止</h3><pre class="line-numbers language-none"><code class="language-none">net stop mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="mysql客户端的连接"><a href="#mysql客户端的连接" class="headerlink" title="mysql客户端的连接"></a>mysql客户端的连接</h3><pre class="line-numbers language-none"><code class="language-none">mysql -uroot -p 然后输入密码进入<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>！<a href="https://guanshunxin.github.io/img/mysql1.png">avatar</a></p><h3 id="查询所有数据库"><a href="#查询所有数据库" class="headerlink" title="查询所有数据库"></a>查询所有数据库</h3><pre class="line-numbers language-none"><code class="language-none">show database;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="查询当前数据库"><a href="#查询当前数据库" class="headerlink" title="查询当前数据库"></a>查询当前数据库</h3><pre class="line-numbers language-none"><code class="language-none">select database;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="今天开始MYSQL的学习"><a href="#今天开始MYSQL的学习" class="headerlink" title="今天开始MYSQL的学习"></a>今天开始MYSQL的学习</h1><h2 id="使用windows的命令提示符完成下列操作"><a href="#使用windows的命令提示符完成下列操作" class="headerlink" title="使用windows的命令提示符完成下列操作"></a>使用windows的命令提示符完成下列操作</h2><h3 id="MYSQL的启动"><a href="#MYSQL的启动" class="headerlink" title="MYSQL的启动"></a>MYSQL的启动</h3><pre class="line-numbers language-none"><code class="language-none">net start mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="MYSQL的停止"><a href="#MYSQL的停止" class="headerlink" title="MYSQL的停止"></a>MYSQL的停止</h3><pre class="line-numbers language-none"><code class="language-none">net stop mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="mysql客户端的连接"><a href="#mysql客户端的连接" class="headerlink" title="mysql客户端的连接"></a>mysql客户端的连接</h3><pre class="line-numbers language-none"><code class="language-none">mysql -uroot -p 然后输入密码进入<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://guanshunxin.github.io/img/mysql1.png" alt="Image text"></p><h3 id="查询所有数据库"><a href="#查询所有数据库" class="headerlink" title="查询所有数据库"></a>查询所有数据库</h3><pre class="line-numbers language-none"><code class="language-none">show database;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="查询当前数据库"><a href="#查询当前数据库" class="headerlink" title="查询当前数据库"></a>查询当前数据库</h3><pre class="line-numbers language-none"><code class="language-none">select database;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
     
     
       
