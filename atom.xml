@@ -6,7 +6,7 @@
   <link href="https://www.guanshunxin.com/atom.xml" rel="self"/>
   
   <link href="https://www.guanshunxin.com/"/>
-  <updated>2022-01-23T09:18:35.651Z</updated>
+  <updated>2022-01-23T09:52:28.320Z</updated>
   <id>https://www.guanshunxin.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MYSQL-DCL</title>
+    <link href="https://www.guanshunxin.com/posts/6.html"/>
+    <id>https://www.guanshunxin.com/posts/6.html</id>
+    <published>2022-01-23T09:33:32.000Z</published>
+    <updated>2022-01-23T09:52:28.320Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="DCL-管理用户"><a href="#DCL-管理用户" class="headerlink" title="DCL-管理用户"></a>DCL-管理用户</h1><h2 id="查询用户"><a href="#查询用户" class="headerlink" title="查询用户"></a>查询用户</h2><pre class="line-numbers language-none"><code class="language-none">use mysql;select * from user;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><pre class="line-numbers language-none"><code class="language-none">create user '用户名' @ '主机名' identified by '密码';创建用户itgsx ,只能在当前主机localhost访问，密码123456create user 'itgsx' @ 'localhost' identified by '123456';创建用户itgsx1 ，能在任意主机访问改数据库，密码123456create user 'itgsx' @ '%' identified by '123456';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="修改用户密码"><a href="#修改用户密码" class="headerlink" title="修改用户密码"></a>修改用户密码</h2><pre class="line-numbers language-none"><code class="language-none">alter user '用户名' @ '主机名' identified with mysql_native_password by '新密码';alter user 'itgsx1'@'%' identified with mysql_native_password by '1234';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><pre class="line-numbers language-none"><code class="language-none">drop user '用户名' @ '主机名';drop user 'itgsx' @'localhost';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h1 id="DCL-权限控制"><a href="#DCL-权限控制" class="headerlink" title="DCL-权限控制"></a>DCL-权限控制</h1><h2 id="查询权限"><a href="#查询权限" class="headerlink" title="查询权限"></a>查询权限</h2><pre class="line-numbers language-none"><code class="language-none">show grants for '用户名'@'主机名';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="授予权限"><a href="#授予权限" class="headerlink" title="授予权限"></a>授予权限</h2><pre class="line-numbers language-none"><code class="language-none">grant 权限列表 on 数据库名.表名 to '用户名'@'主机名';grant all on hxy.* to 'itgsx'@'%';把hxy数据库的所有权限授予itgsx用户<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="撤销权限"><a href="#撤销权限" class="headerlink" title="撤销权限"></a>撤销权限</h2><pre class="line-numbers language-none"><code class="language-none">revoke 权限列表 on 数据库名.表名 to '用户名'@'主机名';revoke all on hxy.* to 'itgsx'@'%';撤销itgsx用户在hxy数据库的所有权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;DCL-管理用户&quot;&gt;&lt;a href=&quot;#DCL-管理用户&quot; class=&quot;headerlink&quot; title=&quot;DCL-管理用户&quot;&gt;&lt;/a&gt;DCL-管理用户&lt;/h1&gt;&lt;h2 id=&quot;查询用户&quot;&gt;&lt;a href=&quot;#查询用户&quot; class=&quot;headerlink&quot; </summary>
+      
+    
+    
+    
+    <category term="学习" scheme="https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MYSQL" scheme="https://www.guanshunxin.com/tags/MYSQL/"/>
+    
+  </entry>
   
   <entry>
     <title>MYSQL-DQL</title>
@@ -41,30 +65,6 @@
   </entry>
   
   <entry>
-    <title>MYSQL-DML</title>
-    <link href="https://www.guanshunxin.com/posts/4.html"/>
-    <id>https://www.guanshunxin.com/posts/4.html</id>
-    <published>2022-01-22T06:54:32.000Z</published>
-    <updated>2022-01-23T06:44:57.180Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="SQL-DML-数据的增删改查"><a href="#SQL-DML-数据的增删改查" class="headerlink" title="SQL-DML 数据的增删改查"></a>SQL-DML 数据的增删改查</h1><h2 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h2><h3 id="1-给指定字段添加数据"><a href="#1-给指定字段添加数据" class="headerlink" title="1.给指定字段添加数据"></a>1.给指定字段添加数据</h3><pre class="line-numbers language-none"><code class="language-none">insert into 表名(字段名1,字段名2,...) values(值1,值2,...);insert tb_user(id, name, age, gender, nickname) values (1,'gsx',20,'男','ggsx');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="2-给全部字段添加数据"><a href="#2-给全部字段添加数据" class="headerlink" title="2.给全部字段添加数据"></a>2.给全部字段添加数据</h3><pre class="line-numbers language-none"><code class="language-none">insert into 表名 values(值1,值2,...);insert tb_user values (2,'gs2x',20,'男','ggssx');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="3-批量添加数据"><a href="#3-批量添加数据" class="headerlink" title="3.批量添加数据"></a>3.批量添加数据</h3><pre class="line-numbers language-none"><code class="language-none">insert into 表名(字段名1,字段名2,...) values(值1,值2,...),(值1,值2,...),(值1,值2,...);insert tb_user(id, name, age, gender, nickname) values (1,'gsx',20,'男','ggsx'),(2,'gs3x',20,'男','gg3sx');insert into 表名 values(值1,值2,...),(值1,值2,...),(值1,值2,...);insert tb_user values (2,'gs2x',20,'男','ggssx'),(2,'gs3x',20,'男','gg3sx');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h2><pre class="line-numbers language-none"><code class="language-none">update 表名 set 字段名1=值1,字段名2=值2,...[where 条件];不加where 表示全部数据update tb_user set name='gdy' where id=1;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><pre class="line-numbers language-none"><code class="language-none">delete from 表名 [where 条件];delete from tb_user where id=1; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;SQL-DML-数据的增删改查&quot;&gt;&lt;a href=&quot;#SQL-DML-数据的增删改查&quot; class=&quot;headerlink&quot; title=&quot;SQL-DML 数据的增删改查&quot;&gt;&lt;/a&gt;SQL-DML 数据的增删改查&lt;/h1&gt;&lt;h2 id=&quot;添加数据&quot;&gt;&lt;a href</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="MYSQL" scheme="https://www.guanshunxin.com/tags/MYSQL/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MYSQL-DDL</title>
     <link href="https://www.guanshunxin.com/posts/3.html"/>
     <id>https://www.guanshunxin.com/posts/3.html</id>
@@ -77,6 +77,30 @@
       
       
     <summary type="html">&lt;h1 id=&quot;DDL-数据库的操作&quot;&gt;&lt;a href=&quot;#DDL-数据库的操作&quot; class=&quot;headerlink&quot; title=&quot;DDL-数据库的操作&quot;&gt;&lt;/a&gt;DDL-数据库的操作&lt;/h1&gt;&lt;h2 id=&quot;使用windows的命令提示符完成下列操作&quot;&gt;&lt;a href=&quot;#</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MYSQL" scheme="https://www.guanshunxin.com/tags/MYSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL-DML</title>
+    <link href="https://www.guanshunxin.com/posts/4.html"/>
+    <id>https://www.guanshunxin.com/posts/4.html</id>
+    <published>2022-01-22T06:54:32.000Z</published>
+    <updated>2022-01-23T06:44:57.180Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SQL-DML-数据的增删改查"><a href="#SQL-DML-数据的增删改查" class="headerlink" title="SQL-DML 数据的增删改查"></a>SQL-DML 数据的增删改查</h1><h2 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h2><h3 id="1-给指定字段添加数据"><a href="#1-给指定字段添加数据" class="headerlink" title="1.给指定字段添加数据"></a>1.给指定字段添加数据</h3><pre class="line-numbers language-none"><code class="language-none">insert into 表名(字段名1,字段名2,...) values(值1,值2,...);insert tb_user(id, name, age, gender, nickname) values (1,'gsx',20,'男','ggsx');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="2-给全部字段添加数据"><a href="#2-给全部字段添加数据" class="headerlink" title="2.给全部字段添加数据"></a>2.给全部字段添加数据</h3><pre class="line-numbers language-none"><code class="language-none">insert into 表名 values(值1,值2,...);insert tb_user values (2,'gs2x',20,'男','ggssx');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="3-批量添加数据"><a href="#3-批量添加数据" class="headerlink" title="3.批量添加数据"></a>3.批量添加数据</h3><pre class="line-numbers language-none"><code class="language-none">insert into 表名(字段名1,字段名2,...) values(值1,值2,...),(值1,值2,...),(值1,值2,...);insert tb_user(id, name, age, gender, nickname) values (1,'gsx',20,'男','ggsx'),(2,'gs3x',20,'男','gg3sx');insert into 表名 values(值1,值2,...),(值1,值2,...),(值1,值2,...);insert tb_user values (2,'gs2x',20,'男','ggssx'),(2,'gs3x',20,'男','gg3sx');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h2><pre class="line-numbers language-none"><code class="language-none">update 表名 set 字段名1=值1,字段名2=值2,...[where 条件];不加where 表示全部数据update tb_user set name='gdy' where id=1;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><pre class="line-numbers language-none"><code class="language-none">delete from 表名 [where 条件];delete from tb_user where id=1; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;SQL-DML-数据的增删改查&quot;&gt;&lt;a href=&quot;#SQL-DML-数据的增删改查&quot; class=&quot;headerlink&quot; title=&quot;SQL-DML 数据的增删改查&quot;&gt;&lt;/a&gt;SQL-DML 数据的增删改查&lt;/h1&gt;&lt;h2 id=&quot;添加数据&quot;&gt;&lt;a href</summary>
       
     
     
