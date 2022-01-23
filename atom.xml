@@ -6,7 +6,7 @@
   <link href="https://www.guanshunxin.com/atom.xml" rel="self"/>
   
   <link href="https://www.guanshunxin.com/"/>
-  <updated>2022-01-23T06:44:05.306Z</updated>
+  <updated>2022-01-23T09:13:52.492Z</updated>
   <id>https://www.guanshunxin.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MYSQL-DQL</title>
+    <link href="https://www.guanshunxin.com/posts/5.html"/>
+    <id>https://www.guanshunxin.com/posts/5.html</id>
+    <published>2022-01-23T09:13:32.000Z</published>
+    <updated>2022-01-23T09:13:52.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="DQL-数据查询"><a href="#DQL-数据查询" class="headerlink" title="DQL-数据查询"></a>DQL-数据查询</h1><h2 id="DQL-基础查询"><a href="#DQL-基础查询" class="headerlink" title="DQL-基础查询"></a>DQL-基础查询</h2><h3 id="1-查询多个字段"><a href="#1-查询多个字段" class="headerlink" title="1.查询多个字段"></a>1.查询多个字段</h3><pre class="line-numbers language-none"><code class="language-none">select 字段1,字段,字段3,... from 表名;select id from tb_user;select * from 表名;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="2-设置别名"><a href="#2-设置别名" class="headerlink" title="2.设置别名"></a>2.设置别名</h3><pre class="line-numbers language-none"><code class="language-none">select 字段1[as 别名1],字段2[as 别名2]...from 表名;select id as '编号' from tb_user; as可以省略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="3-去除重复记录"><a href="#3-去除重复记录" class="headerlink" title="3.去除重复记录"></a>3.去除重复记录</h3><pre class="line-numbers language-none"><code class="language-none">select distinct 字段列表 from 表名;select distinct id '编号' from tb_user;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="DQL-条件查询"><a href="#DQL-条件查询" class="headerlink" title="DQL-条件查询"></a>DQL-条件查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 where 条件列表;select * from tb_user where age=20;select * from tb_user where age&gt;20;select * from tb_user where age&gt;=20 and age&lt;=50; 年龄大于20且小于50的select * from tb_user where age=20 or age=50; 年龄为20或50的select * from tb_user where age in(15,20,30); 年龄为15,20,30的select * from tb_user where age between 20 and 50; 年龄在20到50之间的select * from tb_user where id is null; id为空select * from tb_user where id is not null; id不为空select * from tb_user where name like '__'; 查询名字为两个字的名字select * from tb_user where idcard like '%X' 查询idcard最后一位为X的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-聚合函数"><a href="#DQL-聚合函数" class="headerlink" title="DQL-聚合函数"></a>DQL-聚合函数</h2><pre class="line-numbers language-none"><code class="language-none">null 不会被统计select count(*) from tb_user; 数据总数量select count(id) from tb_user; id总数量select max(age) from tb_user; 年龄最大值select min(age) from tb_user; 年龄最小值select avg(age) from tb_user; 年龄平均值select sum(age) from tb_user where address='河南'; 求河南地区人的年龄的和<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-分组查询"><a href="#DQL-分组查询" class="headerlink" title="DQL-分组查询"></a>DQL-分组查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 [where 条件] group by 分组字段名 [having 分组后过滤条件]1、根据性别分组，统计男员工和女员工的数量select gender,count(*) from tb_user group by gender;2、根据性别分组，统计男员工和女员工的平均年龄select gender,avg(age) from tb_user group by gender;3、查询年龄小于45的员工，并根据工作地址分组，获取员工数量大于等于3的工作地址select workaddress count(*) from tb_user where age&lt;45 group by workaddress having count(*)&gt;=3;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-排序查询"><a href="#DQL-排序查询" class="headerlink" title="DQL-排序查询"></a>DQL-排序查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 order by 字段1 排序方式1,字段2 排序方式2;1、根据年龄对公司的员工进行升序(降序)排序select * from tb_user order by age asc; 升序asc 可以省略select * from tb_user order by age desc; 降序2、根据年龄进行升序排序，如果年龄相同，再按 id 降序排序select * from tb_user order by age asc, id desc;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-分页查询"><a href="#DQL-分页查询" class="headerlink" title="DQL-分页查询"></a>DQL-分页查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 limit 起始索引,查询记录数;select * from tb_user limit 0,10;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><pre class="line-numbers language-none"><code class="language-none">查询性别为男，且年龄在20-40岁(含）之间的前五个员工信息，对查询的结果按年龄升序排序，年龄相同按id进行升序排序select * from tb_user where gender='男' and age between 20 and 40 order by age asc,id asc limit 5;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;DQL-数据查询&quot;&gt;&lt;a href=&quot;#DQL-数据查询&quot; class=&quot;headerlink&quot; title=&quot;DQL-数据查询&quot;&gt;&lt;/a&gt;DQL-数据查询&lt;/h1&gt;&lt;h2 id=&quot;DQL-基础查询&quot;&gt;&lt;a href=&quot;#DQL-基础查询&quot; class=&quot;head</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MYSQL" scheme="https://www.guanshunxin.com/tags/MYSQL/"/>
+    
+  </entry>
   
   <entry>
     <title>MYSQL-DDL</title>
@@ -53,30 +77,6 @@
       
       
     <summary type="html">&lt;h1 id=&quot;SQL-DML-数据的增删改查&quot;&gt;&lt;a href=&quot;#SQL-DML-数据的增删改查&quot; class=&quot;headerlink&quot; title=&quot;SQL-DML 数据的增删改查&quot;&gt;&lt;/a&gt;SQL-DML 数据的增删改查&lt;/h1&gt;&lt;h2 id=&quot;添加数据&quot;&gt;&lt;a href</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="MYSQL" scheme="https://www.guanshunxin.com/tags/MYSQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MYSQL-DQL</title>
-    <link href="https://www.guanshunxin.com/posts/5.html"/>
-    <id>https://www.guanshunxin.com/posts/5.html</id>
-    <published>2022-01-22T06:54:32.000Z</published>
-    <updated>2022-01-23T09:10:16.638Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="DQL-数据查询"><a href="#DQL-数据查询" class="headerlink" title="DQL-数据查询"></a>DQL-数据查询</h1><h2 id="DQL-基础查询"><a href="#DQL-基础查询" class="headerlink" title="DQL-基础查询"></a>DQL-基础查询</h2><h3 id="1-查询多个字段"><a href="#1-查询多个字段" class="headerlink" title="1.查询多个字段"></a>1.查询多个字段</h3><pre class="line-numbers language-none"><code class="language-none">select 字段1,字段,字段3,... from 表名;select id from tb_user;select * from 表名;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="2-设置别名"><a href="#2-设置别名" class="headerlink" title="2.设置别名"></a>2.设置别名</h3><pre class="line-numbers language-none"><code class="language-none">select 字段1[as 别名1],字段2[as 别名2]...from 表名;select id as '编号' from tb_user; as可以省略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="3-去除重复记录"><a href="#3-去除重复记录" class="headerlink" title="3.去除重复记录"></a>3.去除重复记录</h3><pre class="line-numbers language-none"><code class="language-none">select distinct 字段列表 from 表名;select distinct id '编号' from tb_user;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="DQL-条件查询"><a href="#DQL-条件查询" class="headerlink" title="DQL-条件查询"></a>DQL-条件查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 where 条件列表;select * from tb_user where age=20;select * from tb_user where age&gt;20;select * from tb_user where age&gt;=20 and age&lt;=50; 年龄大于20且小于50的select * from tb_user where age=20 or age=50; 年龄为20或50的select * from tb_user where age in(15,20,30); 年龄为15,20,30的select * from tb_user where age between 20 and 50; 年龄在20到50之间的select * from tb_user where id is null; id为空select * from tb_user where id is not null; id不为空select * from tb_user where name like '__'; 查询名字为两个字的名字select * from tb_user where idcard like '%X' 查询idcard最后一位为X的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-聚合函数"><a href="#DQL-聚合函数" class="headerlink" title="DQL-聚合函数"></a>DQL-聚合函数</h2><pre class="line-numbers language-none"><code class="language-none">null 不会被统计select count(*) from tb_user; 数据总数量select count(id) from tb_user; id总数量select max(age) from tb_user; 年龄最大值select min(age) from tb_user; 年龄最小值select avg(age) from tb_user; 年龄平均值select sum(age) from tb_user where address='河南'; 求河南地区人的年龄的和<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-分组查询"><a href="#DQL-分组查询" class="headerlink" title="DQL-分组查询"></a>DQL-分组查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 [where 条件] group by 分组字段名 [having 分组后过滤条件]1、根据性别分组，统计男员工和女员工的数量select gender,count(*) from tb_user group by gender;2、根据性别分组，统计男员工和女员工的平均年龄select gender,avg(age) from tb_user group by gender;3、查询年龄小于45的员工，并根据工作地址分组，获取员工数量大于等于3的工作地址select workaddress count(*) from tb_user where age&lt;45 group by workaddress having count(*)&gt;=3;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-排序查询"><a href="#DQL-排序查询" class="headerlink" title="DQL-排序查询"></a>DQL-排序查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 order by 字段1 排序方式1,字段2 排序方式2;1、根据年龄对公司的员工进行升序(降序)排序select * from tb_user order by age asc; 升序asc 可以省略select * from tb_user order by age desc; 降序2、根据年龄进行升序排序，如果年龄相同，再按 id 降序排序select * from tb_user order by age asc, id desc;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="DQL-分页查询"><a href="#DQL-分页查询" class="headerlink" title="DQL-分页查询"></a>DQL-分页查询</h2><pre class="line-numbers language-none"><code class="language-none">select 字段列表 from 表名 limit 起始索引,查询记录数;select * from tb_user limit 0,10;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><pre class="line-numbers language-none"><code class="language-none">查询性别为男，且年龄在20-40岁(含）之间的前五个员工信息，对查询的结果按年龄升序排序，年龄相同按id进行升序排序select * from tb_user where gender='男' and age between 20 and 40 order by age asc,id asc limit 5;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;DQL-数据查询&quot;&gt;&lt;a href=&quot;#DQL-数据查询&quot; class=&quot;headerlink&quot; title=&quot;DQL-数据查询&quot;&gt;&lt;/a&gt;DQL-数据查询&lt;/h1&gt;&lt;h2 id=&quot;DQL-基础查询&quot;&gt;&lt;a href=&quot;#DQL-基础查询&quot; class=&quot;head</summary>
       
     
     
