@@ -272,9 +272,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const dataCaption = $this.attr('alt') || ''
         $this.wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${dataCaption}" class="fancybox"></a>`)
       })
-
+      var $= jquery.noConflict();
       $().fancybox({
-        selector: '[data-fancybox="images"]',
+        selector: '[data-fancybox]',
         loop: true,
         transitionEffect: 'slide',
         protect: true,
