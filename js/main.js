@@ -264,7 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
  * fancybox和 mediumZoom
  */
-  var $= jquery.noConflict();
   const addFancybox = function (ele) {
     const runFancybox = (ele) => {
       ele.each(function (i,o) {
