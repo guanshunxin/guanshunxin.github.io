@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
  * fancybox和 mediumZoom
  */
+  var $= jquery.noConflict();
   const addFancybox = function (ele) {
     const runFancybox = (ele) => {
       ele.each(function (i,o) {
@@ -272,7 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const dataCaption = $this.attr('alt') || ''
         $this.wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${dataCaption}" class="fancybox"></a>`)
       })
-      var $= jquery.noConflict();
       $().fancybox({
         selector: '[data-fancybox]',
         loop: true,
