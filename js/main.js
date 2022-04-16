@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
   const addFancybox = function (ele) {
     const runFancybox = (ele) => {
-      ele.each(function (i, o) {
+      ele.each(function (i,o) {
         const $this = $(o)
         const lazyloadSrc = $this.attr('data-lazy-src') || $this.attr('src')
         const dataCaption = $this.attr('alt') || ''
