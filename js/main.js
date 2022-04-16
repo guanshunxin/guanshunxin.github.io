@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function () {
       })
 
       $().fancybox({
-        selector: '[data-fancybox]',
+        selector: '[data-fancybox="images"]',
         loop: true,
         transitionEffect: 'slide',
         protect: true,
