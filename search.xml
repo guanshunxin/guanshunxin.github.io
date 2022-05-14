@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>最优服务次序问题</title>
+      <link href="/posts/12.html"/>
+      <url>/posts/12.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="最优服务次序问题"><a href="#最优服务次序问题" class="headerlink" title="最优服务次序问题"></a>最优服务次序问题</h3><p>问题描述：设有n个顾客同时等待一项服务。顾客i需要的服务时间为ti。应如何安排n个顾客的服务次序才能使平均等待时间达到最小?注意：（平均等待时间是n个顾客等待直到完成服务的时间）总和除以n。</p><p>对于给定的n个顾客需要的服务时间，编程计算最优服务次序。</p><p>Input</p><p>测试数据第一行是正整数n(n&lt;=1000)，表示有n个顾客。接下来的1行中，有n个正整数，表示n个顾客需要的服务时间ti(ti&lt;=1000)。</p><p>Output</p><p>输出最小平均等待时间，每个答案一行，保留2位小数。</p><p>Sample Input<br>10</p><p>56 12 1 99 1000 234 33 55 99 812<br>Sample Output<br>532</p><p>选取策略：<br>每次选取在剩余顾客当中，所需服务时间最短的顾客进行服务。<br>即将顾客所需的服务时间进行排序，每次选择排序后的第一个顾客进行服务。</p><p>贪心策略的证明：<br>本文采取交换论证的证明方法。</p><p>交换论证：<br>假设有一个不同于贪心算法的其他算法，得到的问题的最优解，我们交换其他算法中的某些步骤或者变量，使其成为贪心算法，得到的最优解不会变差。</p><p>对本题的证明：<br>t[i] 表示第i个顾客所需的服务时间，T[i]表示第i个顾客所需的等待时间。<br>根据贪心策略，当i&lt;j时，t[i]&lt;=t[j]（由小到大进行排序）<br>每个顾客的等待时间，T(1)=t[1],T(2)=t[1]+t[2],T(3)=t[1]+t[2],………,T(n)=t[1]+t[2]+…+t[n]<br>所以总的等待时间表示为：T=n*t[1]+(n-1)<em>t[2]+……+2</em>t[n-1]+t[n].</p><p>取 a,b 两个数满足 1&lt;=a&lt;b&lt;=n,交换上式中的第a项和第b项，此时得到总时间和为T2<br>因为交换两项对其他项没有影响。</p><p>所以T2-T=（b-a）*(t[b]-t[a])</p><p>(b-a)&gt;0,(t[b]-t[a])&gt;=0,</p><p>(T2-T)&gt;=0<br>所以对任意两项进行交换都无法使等待时间变得更短，因此贪心策略正确。</p><pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std; int main() {  int n;  cin&gt;&gt;n;  int a[n];  for(int i=1; i&lt;=n; i++)  {    cin&gt;&gt;a[i];  }  sort(a+1,a+n+1);  //第一种写法  int count=n;//count为每个顾客在所有顾客等待时间中所占次数  int sum=0;//用于保存总的等待时间  for(int i=1; i&lt;=n; i++)   {    sum=sum+a[i]*count;    count--;  }  //第二种写法  int sum=0;//用于保存总的等待时间  int tep=0;//用于保存下一个顾客的等待时间  for(int i=1;i&lt;=n;i++)  {     sum+=tep;//加上该顾客的等待时间     sum+=a[i];//加上该顾客的服务时间     tep+=a[i];//下个顾客的等待时间  }  cout&lt;&lt;sum/n&lt;&lt;endl;  return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="多次最优服务次序问题"><a href="#多次最优服务次序问题" class="headerlink" title="多次最优服务次序问题"></a>多次最优服务次序问题</h3><p>设有n 个顾客同时等待一项服务。顾客i需要的服务时间为t i，1≤i≤n。共有s处可以提供此项服务。应如何安排n 个顾客的服务次序才能使平均等待时间达到最小?平均等待时间是n 个顾客等待服务直到完成服务的时间的总和除以n。</p><p>对于给定的n 个顾客需要的服务时间和s的值，计算最优服务次序。<br>Input</p><p>输入数据的第一行有2 个正整数n （n≤10000）和s（s≤1000），表示有n 个顾客且有s 处可以提供顾客需要的服务。接下来的1 行中，有n个正整数，表示n个顾客需要的服务时间。<br>Output</p><p>输出数据只有一个整数（计算结果四舍五入），表示计算出的最小平均等待时间。<br>Sample Input</p><p>10 2</p><p>56 12 1 99 1000 234 33 55 99 812<br>Sample Output</p><p>336</p><p>算法思想：<br>排序完之后一次选择窗口服务，例如：有10个服务两个窗口，那么让F1等待1号窗口，F2等待2号窗口，F3等待1号窗口，F4等待2号窗口,F5等待1号窗口……</p><pre class="line-numbers language-none"><code class="language-none">#include&lt;bits/stdc++.h&gt;using namespace std;int main() {  int n,s;  cin&gt;&gt;n&gt;&gt;s;  int a[n];  for(int i=0; i&lt;n; i++)    cin&gt;&gt;a[i];  sort(a,a+n);  int sum=0;  int t[s]= {0};  for(int i=0; i&lt;n; i++) {    t[i%s]=t[i%s]+a[i];    sum=sum+t[i%s];  }  sort(t,t+s);  printf("%.2f\n",sum*1.0/n);  return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PHP</title>
       <link href="/posts/11.html"/>
       <url>/posts/11.html</url>
