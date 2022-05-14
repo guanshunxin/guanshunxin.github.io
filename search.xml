@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>装箱问题</title>
+      <link href="/posts/13.html"/>
+      <url>/posts/13.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="装箱问题"><a href="#装箱问题" class="headerlink" title="装箱问题"></a>装箱问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>有一个箱子容量为 V（正整数，0&lt;=V&lt;=20000），同时有 n 个物品（0＜n&lt;=30），每个物品有一个体积（正整数）。<br>现在在 n 个物品中，任取若干个装入箱内，使得箱子的剩余空间为最小。<br>输入<br>输入：一个整数v，表示箱子容量<br>一个整数n，表示有n个物品<br>接下来 n 个整数，分别表示这 n 个物品的各自体积<br>输出<br>输出：一个整数，表示箱子最小的剩余空间<br>输入样例<br>24<br>6<br>8<br>3<br>12<br>7<br>9<br>7<br>输出样例<br>0</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>可设一个元素个数为 max(v)+1的数组dp[20001]，里面任意一个元素dp[i]表示箱子容积为 i 时可放入的物品的体积。因为物品的体积并不是单位体积，因此dp[i]并不一定等于i，例如有3个物体，体积分别为3,4,5，那么容积为3和4的箱子可放入的物品的体积均为3，即dp[3] = dp[4] = 3。对于每一个物体，都有两种选择-放入或者不放入，所以外层循环可对每个物品进行遍历，而每选择一个物品，定会对大于该物品体积的dp数组元素产生影响，从而还需要一个内层数组对大于该物品体积的dp数组元素进行遍历更新。<br>更新方法为：dp[i] = max{dp[i],dp[i-vi]+vi}，其中vi为当前物品的体积，max中的dp[i]表示不放入该物体时的解，dp[i-vi]+vi表示放入该物体时的解（i-vi表示给即将放入的物品留出合适的体积，如之前的例子，dp[i-vi]并不一定等于dp[i]-vi），取最大值，即为最优解。需要注意的是，需要先将dp数组中的每一个元素初始化为0。 </p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>思考一下：剩余容量最小，也就是装进去的物品体积最大，那么假设物品的价值就是物品的体积，岂不是就是转换成了普通的背包问题，最后求出来的，dp[V]，就是价值(体积)最大的情况，也就是剩余容量最小。<br>背包问题状态转移方程：<br>dp[j]: 容量为j时，价值(体积)最大为dp[j]<br>dp[j] = max(dp[j],dp[j-v[i]]+v[i])</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-none"><code class="language-none">#include&lt;bits/stdc++.h&gt;using namespace std;int V;//箱子体积int n;//个数int a[31];  //存放物品的体积int dp[20001]={0};  //dp[i]表示箱子容积为i时可放入的物品的体积 ，注意要初始化为0int main (){    int i,j;    int t;  scanf("%d",&amp;V);  scanf("%d",&amp;n);  for(i=0;i&lt;n;i++)    scanf("%d",&amp;a[i]);  cout&lt;&lt;"每次遍历下的j和dp[j]: "&lt;&lt;endl;  for(i=0;i&lt;n;i++)//外循环，遍历每个箱子  {    for(j=V;j&gt;=a[i];j--)//内循环，遍历每个容积    {        //更新该容积下的最优放入物品，也就是价值（体积）最大        dp[j]=max(dp[j],(dp[j-a[i]]+a[i]));        if(j&gt;=10)        cout&lt;&lt;setw(2)&lt;&lt;j&lt;&lt;": "&lt;&lt;setw(2)&lt;&lt;dp[j]&lt;&lt;"   ";        else cout&lt;&lt;setw(2)&lt;&lt;j&lt;&lt;": "&lt;&lt;setw(2)&lt;&lt;dp[j]&lt;&lt;" ";    }    cout&lt;&lt;endl;  }    cout&lt;&lt;"最小的容积是："&lt;&lt;V-dp[V]&lt;&lt;endl; //输出最小的容积    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h3><p><img src="https://guanshunxin.github.io/img/zhuang.png" alt="Image text"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>最优服务次序问题</title>
       <link href="/posts/12.html"/>
       <url>/posts/12.html</url>
