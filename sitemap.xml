@@ -186,6 +186,13 @@
 
   
   <url>
+    <loc>https://www.guanshunxin.com/tags/%E6%83%B3%E6%B3%95/</loc>
+    <lastmod>2022-05-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.guanshunxin.com/tags/Hexo/</loc>
     <lastmod>2022-05-18</lastmod>
     <changefreq>daily</changefreq>
@@ -194,13 +201,6 @@
   
   <url>
     <loc>https://www.guanshunxin.com/tags/MYSQL/</loc>
-    <lastmod>2022-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.guanshunxin.com/tags/%E6%83%B3%E6%B3%95/</loc>
     <lastmod>2022-05-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -221,13 +221,6 @@
   </url>
   
   <url>
-    <loc>https://www.guanshunxin.com/tags/Vue/</loc>
-    <lastmod>2022-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.guanshunxin.com/tags/PHP/</loc>
     <lastmod>2022-05-18</lastmod>
     <changefreq>daily</changefreq>
@@ -241,17 +234,24 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://www.guanshunxin.com/tags/Vue/</loc>
+    <lastmod>2022-05-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
-    <loc>https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://www.guanshunxin.com/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2022-05-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.guanshunxin.com/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-05-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
