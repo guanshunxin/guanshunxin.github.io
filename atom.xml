@@ -6,7 +6,7 @@
   <link href="https://www.guanshunxin.com/atom.xml" rel="self"/>
   
   <link href="https://www.guanshunxin.com/"/>
-  <updated>2022-07-23T06:28:05.829Z</updated>
+  <updated>2022-10-12T10:22:09.730Z</updated>
   <id>https://www.guanshunxin.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分治</title>
+    <link href="https://www.guanshunxin.com/posts/19.html"/>
+    <id>https://www.guanshunxin.com/posts/19.html</id>
+    <published>2022-10-12T10:17:44.000Z</published>
+    <updated>2022-10-12T10:22:09.730Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="众数问题"><a href="#众数问题" class="headerlink" title="众数问题"></a>众数问题</h3><pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;using namespace std;/*    算法思路：    1、我们首先假设中间的元素是众数    2、然后由两边向中间遍历，直到左右都出现值等于众数的数，记录下众数和重数    3、这样就将一个数组分为三部分，我们再对左右部分执行上述步骤    4、注意：使用分治策略解决众数问题需要原集合有序*///先进行快速排序void Quick_Sort(int *arr,int Begin,int End){    if(Begin&gt;End)    {        return;    }    int tmp=arr[Begin];//基准    int i=Begin;//定义两个移动指针    int j=End;    while(i!=j)    {        while(arr[j]&gt;=tmp&amp;&amp;j&gt;i)        {            j--;        }        while(arr[i]&lt;=tmp&amp;&amp;i&lt;j)        {            i++;        }        if(j&gt;i)//避免i和j的位置已经到达了同一位置        {            //交换i和j位置的元素            int t=arr[i];            arr[i]=arr[j];            arr[j]=t;        }        arr[Begin]=arr[i];//交换基准元素和两个指针最后指向的元素        arr[i]=tmp;        //继续排序左右两个数组        Quick_Sort(arr,Begin,i-1);        Quick_Sort(arr,i+1,End);    }}//分治int ans=0;//众数的重数int idx=0;//众数的下标void GetMajority(int *arr,int l,int r){    if(l&gt;r)    {        return;    }    int ll=l;//记录原来l的位置    int rr=r;//记录原来r的位置    int mid=(l+r)&gt;&gt;1;//&gt;&gt;符号右移一位相当于除2，只允许整数    while(l&lt;mid&amp;&amp;arr[l]!=arr[mid])l++;//寻找众数的最左边    while(r&gt;mid&amp;&amp;arr[r]!=arr[mid])r--;//寻找众数的最右边    if(ans&lt;=r-l+1)    {        if(ans==r-l+1)        {            idx=min(mid,idx);//选择下标小的        }        else        {            idx=mid;        }        ans=r-l+1;    }    if(l-ll&gt;=ans)    {        GetMajority(arr,ll,l-1);//对左部分进行分治    }    if(rr-r&gt;=ans)    {        GetMajority(arr,r+1,rr);//对右部分进行分治    }}int main(){    int arr[10];    cout&lt;&lt;"请输入十个数: ";    for(int i=0;i&lt;10;i++)    {        cin&gt;&gt;arr[i];    }    Quick_Sort(arr,0,9);    GetMajority(arr,0,9);    cout&lt;&lt;"众数是: "&lt;&lt;arr[idx]&lt;&lt;endl;    cout&lt;&lt;"重数是: "&lt;&lt;ans&lt;&lt;endl;    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="汉诺塔"><a href="#汉诺塔" class="headerlink" title="汉诺塔"></a>汉诺塔</h3><pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;using namespace std;/*    算法思想:    1、首先把上边的n-1个盘子从A柱借助C柱移动到B柱，    2、然后把最下面的一个盘子从A柱移到C柱，    3、最后把B柱的n-1个盘子在借助A柱移到C柱    4、剩下的n-1个盘子重复以上步骤*/void Hanoi(int n,char a,char b,char c){    if(n==1)    {        cout&lt;&lt;"将第"&lt;&lt;n&lt;&lt;"个盘子从"&lt;&lt;a&lt;&lt;"移动到"&lt;&lt;c&lt;&lt;endl;    }    else    {        Hanoi(n-1,a,c,b);//把n-1个圆盘从A柱借助C柱移动到B柱        cout&lt;&lt;"将第"&lt;&lt;n&lt;&lt;"个盘子从"&lt;&lt;a&lt;&lt;"移动到"&lt;&lt;c&lt;&lt;endl;        Hanoi(n-1,b,a,c);//把n-1个圆盘从B柱借助A柱移动到C柱    }}int main(){    cout&lt;&lt;"请输入盘子的个数: ";    int n;    cin&gt;&gt;n;    Hanoi(n,'A','B','C');    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="合并排序"><a href="#合并排序" class="headerlink" title="合并排序"></a>合并排序</h3><p><img src="https://guanshunxin.github.io/img/gui.jpg" alt="Image text"></p><pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;#include &lt;math.h&gt;using namespace std;int a[100];int merges[100];//保存排序后的序列//合并两个有序子序列void Merge(int merges[],int a[],int left,int right,int middle){    int i=left;    int j=middle+1;    int k=left;    while(i&lt;=middle&amp;&amp;j&lt;=right)    {        if(a[i]&lt;=a[j])        {            merges[k++]=a[i++];        }        else        {            merges[k++]=a[j++];        }    }    //当有一方没有元素时，继续保存另一方剩下的元素    while(i&lt;=middle)merges[k++]=a[i++];    while(j&lt;=right)merges[k++]=a[j++];    //更新排序后的a数组    for(int i=left;i&lt;=right;i++)    {        a[i]=merges[i];    }}void MergeSort(int a[],int left,int right){    if(left&lt;right)    {        int middle=(left+right)&gt;&gt;1;        MergeSort(a,left,middle);        MergeSort(a,middle+1,right);        Merge(merges,a,left,right,middle);    }}int main(){    cout&lt;&lt;"请输入数组元素个数: ";    int n;    cin&gt;&gt;n;    cout&lt;&lt;"请输入要排序的数组: ";    for(int i=0;i&lt;n;i++)    {        cin&gt;&gt;a[i];    }    MergeSort(a,0,n-1);    cout&lt;&lt;"排序后的数组是: ";    for(int i=0;i&lt;n;i++)    {        cout&lt;&lt;a[i]&lt;&lt;" ";    }    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;众数问题&quot;&gt;&lt;a href=&quot;#众数问题&quot; class=&quot;headerlink&quot; title=&quot;众数问题&quot;&gt;&lt;/a&gt;众数问题&lt;/h3&gt;&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-non</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="https://www.guanshunxin.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Algorithm" scheme="https://www.guanshunxin.com/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Queue</title>
