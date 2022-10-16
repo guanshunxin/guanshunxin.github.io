@@ -1,0 +1,721 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>动态规划 | guan</title><meta name="keywords" content="Algorithm"><meta name="author" content="guanshunxin"><meta name="copyright" content="guanshunxin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【问题描述】给定n个矩阵：A1, A2, …,An，其中Ai与Ai+1是可乘的，i&#x3D;1，2…，n-1。确定计算矩阵连乘积的计算次序，使得依此次序计算矩阵连乘积需要的数乘次数最少。【输入形式】输入数据为矩阵个数和每个矩阵规模【输出形式】输出结果为计算矩阵连乘积的最少数乘次数和计算次序。【样例输入】530 35 15 5 10 20样例输出】11875Multiply A2,2 and A3,3Mul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="https://www.guanshunxin.com/posts/20.html">
+<meta property="og:site_name" content="guan">
+<meta property="og:description" content="【问题描述】给定n个矩阵：A1, A2, …,An，其中Ai与Ai+1是可乘的，i&#x3D;1，2…，n-1。确定计算矩阵连乘积的计算次序，使得依此次序计算矩阵连乘积需要的数乘次数最少。【输入形式】输入数据为矩阵个数和每个矩阵规模【输出形式】输出结果为计算矩阵连乘积的最少数乘次数和计算次序。【样例输入】530 35 15 5 10 20样例输出】11875Multiply A2,2 and A3,3Mul">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guanshunxin.github.io/img/86.jpg">
+<meta property="article:published_time" content="2022-10-15T09:01:44.000Z">
+<meta property="article:modified_time" content="2022-10-16T13:16:06.705Z">
+<meta property="article:author" content="guanshunxin">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guanshunxin.github.io/img/86.jpg"><link rel="shortcut icon" href="/img/tou.jpg"><link rel="canonical" href="https://www.guanshunxin.com/posts/20"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"一年之内的产物","messageNext":"技术可能存在过期"},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: guanshunxin","link":"链接: ","source":"来源: guan","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: '/js/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '动态规划',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-16 21:16:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link defer rel="stylesheet" href="/css/customm.css" ><link defer rel="stylesheet" href="/css/icon.css"><link defer rel="stylesheet" href="/css/heartbeat.min.css"><link defer rel="stylesheet" href="/css/background.css"><link defer rel="stylesheet" href="/css/index_ee.css"><meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="guan" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/tou.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/List/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/List/gallery/"><i class="fa-fw fa fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/List/movies/"><i class="fa-fw fa fa-film"></i><span> 视频</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fa fa-suitcase"></i><span> 百宝箱</span></a></div><div class="menus_item"><a class="site-page" href="/Windows/"><i class="fa-fw fa fa-desktop"></i><span> Windows</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://guanshunxin.github.io/img/86.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">guan</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-book"></i><span> 说说</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/List/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/List/gallery/"><i class="fa-fw fa fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/List/movies/"><i class="fa-fw fa fa-film"></i><span> 视频</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/tools/"><i class="fa-fw fa fa-suitcase"></i><span> 百宝箱</span></a></div><div class="menus_item"><a class="site-page" href="/Windows/"><i class="fa-fw fa fa-desktop"></i><span> Windows</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">动态规划</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-15T09:01:44.000Z" title="发表于 2022-10-15 17:01:44">2022-10-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-16T13:16:06.705Z" title="更新于 2022-10-16 21:16:06">2022-10-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="动态规划"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>【问题描述】给定n个矩阵：A1, A2, …,An，其中Ai与Ai+1是可乘的，i=1，2…，n-1。确定计算矩阵连乘积的计算次序，使得依此次序计算矩阵连乘积需要的数乘次数最少。<br>【输入形式】输入数据为矩阵个数和每个矩阵规模<br>【输出形式】输出结果为计算矩阵连乘积的最少数乘次数和计算次序。<br>【样例输入】<br>5<br>30 35 15 5 10 20<br>样例输出】<br>11875<br>Multiply A2,2 and A3,3<br>Multiply A1,1 and A2,3<br>Multiply A4,4 and A5,5<br>Multiply A1,3 and A4,5</p>
+<h3 id="矩阵连乘"><a href="#矩阵连乘" class="headerlink" title="矩阵连乘"></a>矩阵连乘</h3><pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;
+#define MaxSize 6
+using namespace std;
+int n;
+int m[MaxSize][MaxSize];
+int s[MaxSize][MaxSize];
+int a[MaxSize];
+void printmatrix(int left,int right)
+{
+    if(right-left==0)
+    {
+        return;
+    }
+    else
+    {
+        printmatrix(left,s[left][right]);
+        printmatrix(s[left][right]+1,right);
+        cout&lt;&lt;"Multiply A"&lt;&lt;left&lt;&lt;","&lt;&lt;s[left][right]&lt;&lt;"and A"&lt;&lt;s[left][right]+1&lt;&lt;","&lt;&lt;right&lt;&lt;endl;
+    }
+
+}
+void matrix()
+{
+    for(int r=2;r&lt;=n;r++)//矩阵长度
+    {
+        for(int i=1;i&lt;=n-r+1;i++)//行循环
+        {
+            int j=i+r-1;//从第i个矩阵Ai开始,长度为r,则矩阵段为(Ai~Aj)
+            //例如对(A2~A4),则i=2,j=4,下面一行的m[2][4]=m[3][4]+p[1]*p[2]*p[4],即A2(A3A4)
+            m[i][j] = m[i+1][j]+a[i-1]*a[i]*a[j];
+            s[i][j]=i;//记录断开点的索引
+            for(int k=i+1;k&lt;j;k++)
+            {
+                int t=m[i][k]+m[k+1][j]+a[i-1]*a[k]*a[j];
+                //将矩阵段(Ai~Aj)分成左右2部分(左m[i][k],右m[k+1][j]),
+                //再加上左右2部分最后相乘的次数(p[i-1] *p[k]*p[j])
+                if(t&lt;m[i][j])
+                {
+                    m[i][j]=t;
+                    s[i][j]=k;
+                }
+            }
+        }
+    }
+    for(int i=1;i&lt;6;i++)
+    {
+        for(int j=1;j&lt;6;j++)
+        {
+            cout&lt;&lt;m[i][j]&lt;&lt;" ";
+        }
+       cout&lt;&lt;endl;
+    }
+   cout&lt;&lt;"矩阵连乘最小次数："&lt;&lt;m[1][n]&lt;&lt;endl;
+   cout&lt;&lt;"索引矩阵是："&lt;&lt;endl;
+   for(int i=1;i&lt;6;i++)
+    {
+        for(int j=1;j&lt;6;j++)
+        {
+            cout&lt;&lt;s[i][j]&lt;&lt;" ";
+        }
+        cout&lt;&lt;endl;
+    }
+   cout&lt;&lt;"矩阵连乘的形式："&lt;&lt;endl;
+   printmatrix(1,n);
+}
+int main()
+{
+    cout&lt;&lt;"请输入矩阵个数：";
+    cin&gt;&gt;n;
+    cout&lt;&lt;"请输入每个矩阵规模：";
+    for(int i=0;i&lt;=n;i++)
+    {
+        cin&gt;&gt;a[i];
+    }
+    matrix();
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h3><p>【问题描述】给定 n 个不同物品和一个背包，物品 i 的重量是 wi，价值为 vi，背包容量为 C，物品 i 只有两种选择：装入背包或不装入背包（0/1背包问题，0/1 knapsack problem）。如何选择装入背包的物品，使得装入背包中物品的总价值最大？<br>【输入形式】依次输入n，C，物品重量数组w，物品价值数组v<br>【输出形式】输出最大价值及选择的物品xi<br>【样例输入】<br>5<br>10<br>2 2 6 5 4<br>6 3 5 4 6<br>【样例输出】<br>15<br>x1 x2 x5</p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+int main()
+{
+    int n,c,w[20],v[20],V[20][20],x[20];
+    cout&lt;&lt;"请输入物品种类: ";
+    cin&gt;&gt;n;
+    cout&lt;&lt;"请输入背包容量: ";
+    cin&gt;&gt;c;
+    for(int i=0;i&lt;=n;i++)
+    {
+        V[i][0]=0;//背包容量为0该价值列为0
+    }
+    for(int j=0;j&lt;=c;j++)
+    {
+        V[0][j]=0;//物品行为0该行价值为0
+    }
+    cout&lt;&lt;"请输入物品重量: ";
+    for(int i=1;i&lt;=n;i++)
+    {
+        cin&gt;&gt;w[i];
+    }
+    cout&lt;&lt;"请输入物品价值: ";
+    for(int i=1;i&lt;=n;i++)
+    {
+        cin&gt;&gt;v[i];
+    }
+    for(int i=1;i&lt;=n;i++)//物品行
+    {
+        for(int j=1;j&lt;=c;j++)//容量列
+        {
+            if(j&lt;w[i])
+            {
+                V[i][j]=V[i-1][j];
+                //当容量不足以装入i物品就等于前一个容量所装物品的价值
+            }
+            else
+            {
+                V[i][j]=max(V[i-1][j],V[i-1][j-w[i]]+v[i]);
+                //不装入该物品和装入该物品价值作比较
+                //要为该物品腾出w[i]的容量，
+                //剩余容量为j-w[i]，就是在物品可装入为前i-1个物品且背包容量为j-w[i]时，
+                //背包所装的价值加上新装入背包的物品价值就是总价值了
+            }
+        }
+    }
+    for(int j=c,i=n;i&gt;0;i--)
+    {
+        if(V[i][j]&gt;V[i-1][j])
+        {
+            x[i]=1;//在该容量下物品价值增加说明该物品装入背包
+            j=j-w[i];//更新剩余背包容量
+        }
+        else
+        {
+            x[i]=0;
+        }
+    }
+    cout&lt;&lt;"最大价值是: "&lt;&lt;V[n][c]&lt;&lt;endl;
+    cout&lt;&lt;"放入的物品是: ";
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(x[i]==1)
+        {
+            cout&lt;&lt;"x"&lt;&lt;i&lt;&lt;" ";
+        }
+    }
+    cout&lt;&lt;endl;
+    for(int i=0;i&lt;=n;i++)
+    {
+        for(int j=0;j&lt;=c;j++)
+        {
+            cout&lt;&lt;setw(2)&lt;&lt;V[i][j]&lt;&lt;" ";
+        }
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h3><p>【问题描述】<br>给定一个序列，如果其中有些元素(也可能没有)被省略，则我们可以得到该序列的一个子序列。给定一个序列X = &lt; &gt; ，另一个序列Z满足条件，存在严格递增索引序列I=&lt; &gt;,使得对于所有j = 1,2,…,k, ，则称Z= &lt; &gt;是X的子序列。例如，Z = &lt;a, b, f, c&gt;是X = &lt;a, b, c, f, b, c&gt;的子序列。<br>给定两个序列X和Y，问题是求出X和Y的最大长度公共子序列的长度。<br>【输入形式】两个给定字符串<br>【输出形式】两个序列最大长度公共子序列的长度。<br>【样例输入】<br>abcfbc abfcab<br>【样例输出】<br>4</p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;
+
+using namespace std;
+char ss[100];
+int sum=0;
+void StructureSequence(int s[][100],char x[],int i,int j)
+{
+    if(i==0||j==0)
+    {
+        return;
+    }
+    if(s[i][j]==1)
+    {
+        ss[sum++]=x[i];
+        StructureSequence(s,x,i-1,j-1);
+    }
+    else if(s[i][j]==2)
+    {
+        StructureSequence(s,x,i,j-1);
+    }
+    else
+    {
+        StructureSequence(s,x,i-1,j);
+    }
+
+}
+void LCS(int m,int n,char x[],char y[],int c[][100],int s[][100])
+{
+    //定义边界为0
+    //s中设置标记1,2,3表示三种情况
+    for(int i=0;i&lt;=m;i++)
+    {
+        c[i][0]=0;
+    }
+    for(int j=0;j&lt;=n;j++)
+    {
+        c[0][j]=0;
+    }
+    for(int i=1;i&lt;=m;i++)
+    {
+        for(int j=1;j&lt;=n;j++)
+        {
+            if(x[i]==y[j])
+            {
+                //表示序列X和序列Y的最后项x[i],y[j]已被选入最长公共子序列
+                c[i][j]=c[i-1][j-1]+1;
+                s[i][j]=1;
+            }
+            //当序列Y少了最后一项或序列X少最后一项最长序列长度做比较
+            //最长的就为此时的最长子序列
+            //因为最后一项不等所以选出其中一个序列少最后一项的最长公共子序列即为此时的最长公共子序列
+            else if(c[i][j-1]&gt;c[i-1][j])
+            {
+                //表示最长公共子序列是Xi,Yj-1的最长公共子序列
+                c[i][j]=c[i][j-1];
+                s[i][j]=2;
+            }
+            else
+            {
+                //表示最长公共子序列是Xi-1,Yj的最长公共子序列
+                c[i][j]=c[i-1][j];
+                s[i][j]=3;
+            }
+        }
+    }
+    StructureSequence(s,x,m,n);
+}
+int main()
+{
+    int m,n;
+    char x[20],y[20];
+    int s[100][100],c[100][100];
+    cout&lt;&lt;"请输入序列X的长度: ";
+    cin&gt;&gt;m;
+    cout&lt;&lt;"请输入序列X: ";
+    for(int i=1;i&lt;=m;i++)
+    {
+        cin&gt;&gt;x[i];
+    }
+    cout&lt;&lt;"请输入序列Y的长度: ";
+    cin&gt;&gt;n;
+    cout&lt;&lt;"请输入序列Y: ";
+    for(int i=1;i&lt;=n;i++)
+    {
+        cin&gt;&gt;y[i];
+    }
+    LCS(m,n,x,y,c,s);
+    cout&lt;&lt;"最长公共子序列长度是: "&lt;&lt;sum&lt;&lt;endl;
+    cout&lt;&lt;"最长公共子序列: ";
+    for(int i=sum-1;i&gt;=0;i--)
+    {
+        cout&lt;&lt;ss[i]&lt;&lt;" ";
+    }
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="最优二叉搜索树"><a href="#最优二叉搜索树" class="headerlink" title="最优二叉搜索树"></a>最优二叉搜索树</h3><p>【问题描述】<br>数据集 S＝&lt; 1, 2, …, n &gt;<br>存取概率分布P = &lt; a0, b1, a1, b2, … , ai, bi+1, …, bn, an &gt;(b0 = 0), 求一棵最优的(即平均比较次数最少的)二分检索树.<br>假设 m[i,j] 是相对于输入 S[i,j] 和 P[i,j] 的最优二叉搜索树的平均比较次数，令m[i,i-1]=0.<br>【输入形式】输入数据结点个数n，空袭结点及数据结点存取概率<br>【输出形式】最优二叉搜索树的中序遍历结果<br>【样例输入】<br>5<br>0.04 0.1 0.02 0.3 0.02 0.1 0.05 0.2 0.06 0.1 0.01<br>【样例输出】<br>2 1 4 3 5</p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+const int MaxVal = 9999;
+int n;
+//搜索到根节点和虚拟键的概率
+double p[20];
+double q[20];
+int root[20][20];//记录根节点
+double w[20][20];//子树概率总和
+double e[20][20];//子树期望代价
+void optimalBST(double *p,double *q,int n)
+{
+    //初始化只包括虚拟键的子树
+    for (int i = 1; i &lt;= n + 1; ++i)
+    {
+        w[i][i - 1] = q[i - 1];
+        e[i][i - 1] = q[i - 1];
+    }
+
+    //由下到上，由左到右逐步计算
+    for (int len = 1; len &lt;= n; len++)
+    {
+        for (int i = 1; i &lt;= n - len + 1; i++)
+        {
+            int j = i + len - 1;
+            e[i][j] = MaxVal;
+            w[i][j] = w[i][j - 1] + p[j] + q[j];
+            //求取最小代价的子树的根
+            for (int k = i; k &lt;= j; k++)
+            {
+                double temp = e[i][k - 1] + e[k + 1][j] + w[i][j];
+                if (temp &lt; e[i][j])
+                {
+                    e[i][j] = temp;
+                    root[i][j] = k;
+                }
+            }
+        }
+    }
+}
+
+//打印最优二叉查找树的结构
+//打印出[i,j]子树，它是根r的左子树和右子树
+void printOptimalBST(int i,int j,int r)
+{
+    int rootChild = root[i][j];//子树根节点
+    if (rootChild == root[1][n])
+    {
+        //输出整棵树的根
+        cout &lt;&lt; rootChild&lt;&lt;" ";
+        printOptimalBST(i,rootChild - 1,rootChild);
+        printOptimalBST(rootChild + 1,j,rootChild);
+        return;
+    }
+
+    if (j &lt;=i - 1)
+    {
+        return;
+    }
+    else//遇到内部结点
+    {
+        cout&lt;&lt;rootChild&lt;&lt;" ";
+    }
+
+    printOptimalBST(i,rootChild - 1,rootChild);
+    printOptimalBST(rootChild + 1,j,rootChild);
+}
+void print1()
+{
+    for(int i=1;i&lt;=n;i++)
+    {
+        for(int j=1;j&lt;=n;j++)
+        {
+            cout&lt;&lt;setw(4)&lt;&lt;e[i][j]&lt;&lt;" ";
+        }
+        cout&lt;&lt;endl;
+    }
+    cout&lt;&lt;endl;
+    for(int i=1;i&lt;=n;i++)
+    {
+        for(int j=1;j&lt;=n;j++)
+        {
+            cout&lt;&lt;setw(4)&lt;&lt;w[i][j]&lt;&lt;" ";
+        }
+        cout&lt;&lt;endl;
+    }
+}
+int main()
+{
+    cout&lt;&lt;"请输入数据节点个数: ";
+    cin&gt;&gt;n;
+    double a;
+    int p1=1;
+    int q1=0;
+    for(int i=0;i&lt;=n*2;i++)
+    {
+        cin&gt;&gt;a;
+        if(i%2==0)
+        {
+            q[q1++]=a;
+        }
+        else
+        {
+            p[p1++]=a;
+        }
+    }
+    optimalBST(p,q,n);
+    cout &lt;&lt; "最优二叉树结构：" &lt;&lt; endl;
+    print1();
+    printOptimalBST(1,n,-1);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">guanshunxin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.guanshunxin.com/posts/20.html">https://www.guanshunxin.com/posts/20.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.guanshunxin.com" target="_blank">guan</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Algorithm/">Algorithm</a></div><div class="post_share"><div class="social-share" data-image="https://guanshunxin.github.io/img/86.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/weChat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/weChat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/zhifubao.jpg" target="_blank"><img class="post-qr-code-img" src="/img/zhifubao.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/21.html"><img class="prev-cover" src="https://guanshunxin.github.io/img/87.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">贪心算法</div></div></a></div><div class="next-post pull-right"><a href="/posts/19.html"><img class="next-cover" src="https://guanshunxin.github.io/img/85.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">分治</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/14.html" title="c++结构体和指针"><img class="cover" src="https://guanshunxin.github.io/img/80.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-03</div><div class="title">c++结构体和指针</div></div></a></div><div><a href="/posts/12.html" title="最优服务次序问题"><img class="cover" src="https://guanshunxin.github.io/img/79.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-14</div><div class="title">最优服务次序问题</div></div></a></div><div><a href="/posts/13.html" title="装箱问题"><img class="cover" src="https://guanshunxin.github.io/img/79.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-14</div><div class="title">装箱问题</div></div></a></div><div><a href="/posts/15.html" title="STL"><img class="cover" src="https://guanshunxin.github.io/img/81.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-03</div><div class="title">STL</div></div></a></div><div><a href="/posts/19.html" title="分治"><img class="cover" src="https://guanshunxin.github.io/img/85.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-12</div><div class="title">分治</div></div></a></div><div><a href="/posts/21.html" title="贪心算法"><img class="cover" src="https://guanshunxin.github.io/img/87.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-16</div><div class="title">贪心算法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/tou.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">guanshunxin</div><div class="author-info__description">博客因兴趣诞生,在不断完善中</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://guanshunxin.github.io/"><i></i><span>个人主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/guanshunxin/guanshunxin.github.io" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=2984044599&amp;website=www.qtxml.cn" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">兴趣爱好才是最大的动力，何不与我共同来攀知识高峰，品翘楚美人！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E8%BF%9E%E4%B9%98"><span class="toc-number">1.</span> <span class="toc-text">矩阵连乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">01背包问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text">最长公共子序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">4.</span> <span class="toc-text">最优二叉搜索树</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/21.html" title="贪心算法"><img src="https://guanshunxin.github.io/img/87.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="贪心算法"/></a><div class="content"><a class="title" href="/posts/21.html" title="贪心算法">贪心算法</a><time datetime="2022-10-16T13:15:23.000Z" title="发表于 2022-10-16 21:15:23">2022-10-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/20.html" title="动态规划"><img src="https://guanshunxin.github.io/img/86.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="动态规划"/></a><div class="content"><a class="title" href="/posts/20.html" title="动态规划">动态规划</a><time datetime="2022-10-15T09:01:44.000Z" title="发表于 2022-10-15 17:01:44">2022-10-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/19.html" title="分治"><img src="https://guanshunxin.github.io/img/85.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="分治"/></a><div class="content"><a class="title" href="/posts/19.html" title="分治">分治</a><time datetime="2022-10-12T10:17:44.000Z" title="发表于 2022-10-12 18:17:44">2022-10-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/18.html" title="Queue"><img src="https://guanshunxin.github.io/img/84.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="Queue"/></a><div class="content"><a class="title" href="/posts/18.html" title="Queue">Queue</a><time datetime="2022-07-23T06:23:20.000Z" title="发表于 2022-07-23 14:23:20">2022-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/17.html" title="Stack"><img src="https://guanshunxin.github.io/img/83.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="Stack"/></a><div class="content"><a class="title" href="/posts/17.html" title="Stack">Stack</a><time datetime="2022-07-23T06:17:20.000Z" title="发表于 2022-07-23 14:17:20">2022-07-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> guanshunxin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'ez7x11lc2tmYbaFGJYcuCM5p-MdYXbMMI',
+      appKey: '8JfpkN9FzUAxoy4KVdNH2Ucv',
+      placeholder: '畅所欲言！',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://www.guanshunxin.com/posts/20.html'
+    this.page.identifier = 'posts/20.html'
+    this.page.title = '动态规划'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Guan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script defer type="text/javascript" src="/js/sakura.js"></script><script defer type="text/javascript" src="/js/animate.js"></script><div class="aplayer no-destroy" data-id="3571231776" data-server="tencent" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="auto" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "cca6c140-d2a8-4cb5-b9c6-72e3cb80ea22";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (false) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="/js/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?d993ef67089eaf8bc2fd773602e98c39"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
